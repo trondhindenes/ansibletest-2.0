@@ -1,6 +1,5 @@
--- 
-   name: webserver
-     win_feature: state=present restart=True name= > "Web-Server",
+- name: webserver
+  win_feature: state=present restart=True name= > "Web-Server",
 "Web-WebServer",
 "Web-Common-Http",
 "Web-Default-Doc",
