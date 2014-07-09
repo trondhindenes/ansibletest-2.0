@@ -5,7 +5,7 @@
       name=>
             "Web-Server"
             ,"Web-Common-Http"
-            ,Web-Common-Http"
+            ,"Web-Common-Http"
             ,"Web-WebServer"
             ,"Web-Common-Http"
             ,"Web-Default-Doc"
