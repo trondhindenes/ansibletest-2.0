@@ -2,4 +2,5 @@
   win_feature: 
       state=present
       restart=True
-      name="Web-Server"
+      name=>
+            "Web-Server"
