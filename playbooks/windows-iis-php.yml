@@ -3,6 +3,6 @@
   hosts: windows-web
   roles:
   - windows-iis-php-winfeatures
-  - windows-iis-php
+#  - windows-iis-php
 
 
