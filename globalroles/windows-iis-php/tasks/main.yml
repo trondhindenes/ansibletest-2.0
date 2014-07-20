@@ -32,6 +32,14 @@
 
   - name: Configure PHP default doc
     action: script configurephp.ps1
+
   - name: Configure PHP for IIS
     action: script configuredefaultdoc.ps1
 
+  - name: Verify PHP ini
+    action: win_stat path="C:\php\php.ini"
+    register: phpinifile
+
+  - name: Copy PHP ini
+    action: script copyphpini.ps1
+    when: phpinifile.stat.exists == false
