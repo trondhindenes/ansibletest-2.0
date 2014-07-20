@@ -32,4 +32,6 @@
 
   - name: Configure PHP for IIS
     action: script configurephp.ps1
+  - name: Configure PHP for IIS
+    action: script configuredefaultdoc.ps1
 
