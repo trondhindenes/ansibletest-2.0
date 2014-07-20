@@ -1,6 +1,6 @@
 ---
   - name: webserver
-    action: win_feature name="Web-Server","Web-Mgmt-Tools","web-Default-Doc","Web-Dir-Browsing","Web-Http-Errors","Web-Static-Content","Web-Http-Logging","web-Stat-Compression","web-Filtering","web-CGI","web-ISAPI-Ext","web-ISAPI-Filter" state=present restart=False
+    action: win_feature name="Web-Server,Web-Mgmt-Tools,web-Default-Doc,Web-Dir-Browsing,Web-Http-Errors,Web-Static-Content,Web-Http-Logging,web-Stat-Compression,web-Filtering,web-CGI,web-ISAPI-Ext,web-ISAPI-Filter" state=present restart=False
 
 # Download PHP thingy if it's not already on disk
   - name: Verify PHP thingy
@@ -30,7 +30,7 @@
   - name: Install VC 2012 Redist
     action: script installvc2012.ps1
 
-  - name: Configure PHP for IIS
+  - name: Configure PHP default doc
     action: script configurephp.ps1
   - name: Configure PHP for IIS
     action: script configuredefaultdoc.ps1
