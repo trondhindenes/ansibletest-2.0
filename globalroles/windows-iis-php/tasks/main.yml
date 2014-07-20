@@ -1,62 +1,35 @@
----  
+---
+  - name: webserver
+    action: win_feature name="Web-Server","Web-Mgmt-Tools","web-Default-Doc","Web-Dir-Browsing","Web-Http-Errors","Web-Static-Content","Web-Http-Logging","web-Stat-Compression","web-Filtering","web-CGI","web-ISAPI-Ext","web-ISAPI-Filter" state=present restart=False
+
 # Download PHP thingy if it's not already on disk
   - name: Verify PHP thingy
-    action: win_stat path="C:\phpthingy.zip"
-    register: phpthingyfile
+    action: win_stat path="C:\php.zip"
+    register: phpfile
 
-  - name: Download PHP Thingy
-    action: win_get_url dest="C:\phpthingy.zip" url="https://sourceforge.net/projects/phpinstallermsi/files/zip/runphp.zip/download"
-    when: phpthingyfile.stat.exists == false
+  - name: Download PHP
+    action: win_get_url dest="C:\php.zip" url="http://windows.php.net/downloads/releases/php-5.5.14-nts-Win32-VC11-x64.zip"
+    when: phpfile.stat.exists == false
 
+  - name: Verify PHP folder
+    action: win_stat path="C:\php"
+    register: phpfolder
 
-# Download webdeploy if it's not already on disk
-  - name: Verify webdeploy
-    action: win_stat path="C:\WebDeploy_amd64_en-US.msi"
-    register: webdeployfile
+  - name: Unzip PHP folder
+    action: script extractfile.ps1
+    when: phpfolder.stat.isdir == false and phpfolder.stat.exists == false
 
-  - name: Download webdeploy
-    action: win_get_url dest="C:\WebDeploy_amd64_en-US.msi" url="http://download.microsoft.com/download/D/4/4/D446D154-2232-49A1-9D64-F5A9429913A4/WebDeploy_amd64_en-US.msi"
-    when: webdeployfile.stat.exists == false
+  - name: Verify VC2012 Redist
+    action: win_stat path="C:\vcredist_x64.exe"
+    register: vcredistfile
 
-#Download mysql if it's not already on disk
-  - name: Verify mysql Connector-Net
-    action: win_stat path="C:\mysql-connector-net-6.5.4.msi"
-    register: mysqlconnectornet6
+  - name: Download VC2012 Redist
+    action: win_get_url dest="C:\vcredist_x64.exe" url="http://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x64.exe"
+    when: vcredistfile.stat.exists == false
 
-  - name: Download mysql Connector-Net
-    action: win_get_url dest="C:\mysql-connector-net-6.5.4.msi" url="http://mysql.mirrors.pair.com/Downloads/Connector-Net/mysql-connector-net-6.5.4.msi"
-    when: mysqlconnectornet6.stat.exists == false
+  - name: Install VC 2012 Redist
+    action: script installvc2012.ps1
 
-
-#Download rewrite thingy if it's not already on disk
-  - name: Verify rewrite thingy
-    action: win_stat path="C:\rewrite_amd64_en-US.msi"
-    register: rewritethingyfile
-
-  - name: Download rewrite Thingy
-    action: win_get_url dest="C:\rewrite_amd64_en-US.msi" url="http://download.microsoft.com/download/6/7/D/67D80164-7DD0-48AF-86E3-DE7A182D6815/rewrite_amd64_en-US.msi"
-    when: rewritethingyfile.stat.exists == false
-
-#http://sourceforge.net/projects/phpinstallermsi/files/zip/php-5.4.24-nts-Win32-VC9-x86.zip/download
-  - name: Verify php thingy
-    action: win_stat path="C:\php-5.4.24-nts-Win32-VC9-x86.zip"
-    register: phpthingyfile
-
-  - name: Download PHP Thingy
-    action: win_get_url dest="C:\php-5.4.24-nts-Win32-VC9-x86.zip" url="http://sourceforge.net/projects/phpinstallermsi/files/zip/php-5.4.24-nts-Win32-VC9-x86.zip/download"
-    when: phpthingyfile.stat.exists == false
-
-#http://sourceforge.net/projects/wincache/files/wincache-1.3.4/wincachewpi-1.3.4-5.4-nts-vc9-x86.exe
-  - name: Verify wincache thingy
-    action: win_stat path="C:\wincachewpi-1.3.4-5.4-nts-vc9-x86.exe"
-    register: wincachetingyfile
-
-  - name: Download wincache Thingy
-    action: win_get_url dest="C:\wincachewpi-1.3.4-5.4-nts-vc9-x86.exe" url="http://sourceforge.net/projects/wincache/files/wincache-1.3.4/wincachewpi-1.3.4-5.4-nts-vc9-x86.exe"
-    when: wincachetingyfile.stat.exists == false
-
-# Install MySQL connector for .net if not already present
-  - name: Install MySQL connector
-    win_msi: path="C:\mysql-connector-net-6.5.4.msi" msiname="MySQL Connector Net 6.5.4" msiversionstring="6.5.4"
-
+  - name: Configure PHP for IIS
+    action: script configurephp.ps1
 
