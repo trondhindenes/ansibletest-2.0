@@ -1,0 +1,6 @@
+---
+- name: Windows Git
+  hosts: windows-web
+  roles:
+  - windows-git
+
