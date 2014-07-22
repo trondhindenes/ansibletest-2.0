@@ -1,3 +1,6 @@
 ---
   - name: install git
     action: win_chocolatey package="git notepadplusplus.install"
+
+  - name: install notepadplusplus
+    action: win_chocolatey package="notepadplusplus.install"
