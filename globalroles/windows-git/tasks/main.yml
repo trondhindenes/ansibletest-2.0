@@ -3,4 +3,4 @@
     action: win_chocolatey package="git"
 
   - name: install notepadplusplus
-    action: win_chocolatey package="notepadplusplus.install"
+    action: win_chocolatey package="notepadplusplus.install" force="yes"
