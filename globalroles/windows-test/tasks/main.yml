@@ -1,0 +1,4 @@
+---
+  - name: test the things
+    action: win_testmod
+      path:durum
