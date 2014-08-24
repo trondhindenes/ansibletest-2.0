@@ -1,7 +1,7 @@
 ---
   - name: test the things
     action: win_testmod
-      path: changed
+    path: changed
 	  
   - name: Install the vc thingy
     action: win_package
