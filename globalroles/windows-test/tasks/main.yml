@@ -4,4 +4,4 @@
     
 
   - name: Install the vc thingy
-    win_package: Name="Microsoft Visual C++ 2012 x64 Minimum Runtime - 11.0.61030" path={{ vc_installpath }} ProductId="{CF2BEA3C-26EA-32F8-AA9B-331F7E34BA97}" Arguments="/install /passive /norestart"
+    win_package: path={{ vc_installpath }} ProductId="{CF2BEA3C-26EA-32F8-AA9B-331F7E34BA97}" Arguments="/install /passive /norestart"
