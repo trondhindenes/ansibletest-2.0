@@ -1,7 +1,6 @@
 ---
   - name: test the things
     win_testmod: path=somethingelse
-    
 
   - name: Install the vc thingy
     win_package: 
@@ -11,10 +10,10 @@
       Arguments="/install /passive /norestart"
 
   - name: Check for reboot
-    win_test_reboot:
     register: pending_reboot
-	
+    win_test_reboot:
+
   - name: execute reboot
-    when: pending_reboot.pending_reboot == true
+    when: pending_reboot.pending_reboot == "true"
     debug:
       msg: "we need to reboot!"
