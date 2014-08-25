@@ -18,6 +18,6 @@
     debug:
       msg: "we need to reboot!"
 
-  - name: Install cmder	  
+  - name: Install cmder
     win_chocolatey:
       package: cmder
