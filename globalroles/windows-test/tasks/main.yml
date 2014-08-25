@@ -14,6 +14,6 @@
     win_test_reboot:
 
   - name: execute reboot
-    when: pending_reboot.pending_reboot == "true"
+    when: pending_reboot.pending_reboot == true
     debug:
       msg: "we need to reboot!"
