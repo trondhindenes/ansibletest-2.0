@@ -17,3 +17,7 @@
     when: pending_reboot.pending_reboot == true
     debug:
       msg: "we need to reboot!"
+
+  - name: Install cmder	  
+    win_chocolatey:
+      package: cmder
