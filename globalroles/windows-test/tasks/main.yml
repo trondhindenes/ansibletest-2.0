@@ -9,6 +9,6 @@
       path={{ vc_installpath }} 
       ProductId="{CF2BEA3C-26EA-32F8-AA9B-331F7E34BA97}" 
       Arguments="/install /passive /norestart"
-	  
+
   - name: Check for reboot
     win_test_reboot:
