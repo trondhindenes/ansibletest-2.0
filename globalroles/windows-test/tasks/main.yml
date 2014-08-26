@@ -3,10 +3,10 @@
     win_testmod: path=somethingelse
 
   - name: Install the vc thingy
-    win_package: 
+    win_package:
       name="Microsoft Visual C thingy"
-      path={{ vc_installpath }} 
-      ProductId="{CF2BEA3C-26EA-32F8-AA9B-331F7E34BA97}" 
+      path={{ vc_installpath }}
+      ProductId="{CF2BEA3C-26EA-32F8-AA9B-331F7E34BA97}"
       Arguments="/install /passive /norestart"
 
   - name: Check for reboot
@@ -18,6 +18,7 @@
     debug:
       msg: "we need to reboot!"
 
-  - name: Install cmder
-    win_chocolatey:
-      package: cmder
+  - name: Set the hosts file thingy
+    win_hosts_file:
+      host_name: "www.crayon.com"
+      ip_address: "217.114.91.109"
