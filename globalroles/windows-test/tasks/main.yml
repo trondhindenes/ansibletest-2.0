@@ -5,7 +5,7 @@
 
   - name: DNS Client server address
     win_dns_client:
-      dns_server_Address: "10.10.50.4","8.8.8.8"
+      dns_server_Address: "10.10.50.4,8.8.8.8"
       interface_index: "{{ ansible_interfaces[0].interface_index }}"
 
   - name: test the things
