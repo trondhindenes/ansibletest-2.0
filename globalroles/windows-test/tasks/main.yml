@@ -26,4 +26,4 @@
 
   - name: test hostvars
     debug:
-      msg: {{ ansible_hostname }} {{ ansible_interfaces[0].interface_name }}
+      msg: "{{ ansible_hostname }} {{ ansible_interfaces[0].interface_name }}"
