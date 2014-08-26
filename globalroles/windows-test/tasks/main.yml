@@ -1,4 +1,13 @@
 ---
+  - name: test hostvars
+    debug:
+      msg: "{{ ansible_hostname }} {{ ansible_interfaces[0].interface_name }}"
+
+  - name: DNS Client server address
+    win_dns_client:
+      dns_server_Address: "10.10.50.4"
+      interface_name: "{{ ansible_interfaces[0].interface_name }}"
+
   - name: test the things
     win_testmod: path=somethingelse
 
@@ -23,7 +32,3 @@
       host_name: "www.crayon.com"
       ip_address: "217.114.91.109"
       ensure: absent
-
-  - name: test hostvars
-    debug:
-      msg: "{{ ansible_hostname }} {{ ansible_interfaces[0].interface_name }}"
