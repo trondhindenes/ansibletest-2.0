@@ -23,3 +23,7 @@
       host_name: "www.crayon.com"
       ip_address: "217.114.91.109"
       ensure: absent
+
+  - name: test hostvars
+    debug:
+      msg: {{ ansible_hostname }} {{ ansible_interfaces[0].interface_name }}
