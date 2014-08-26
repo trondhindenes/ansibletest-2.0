@@ -12,6 +12,12 @@
       dns_server_Address: "10.10.50.4,8.8.8.8"
       interface_index: "{{ ansible_interfaces[0].interface_index }}"
 
+  - name: IIS Site
+    win_iis_website:
+      name: "Default Web site"
+      path: "C:\inetpub\wwwroot"
+      state: Stopped
+
   - name: test the things
     win_testmod: path=somethingelse
 
