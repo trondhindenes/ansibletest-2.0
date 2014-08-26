@@ -22,3 +22,4 @@
     win_hosts_file:
       host_name: "www.crayon.com"
       ip_address: "217.114.91.109"
+      ensure: absent
