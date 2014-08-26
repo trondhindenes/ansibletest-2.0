@@ -18,6 +18,12 @@
       path: 'C:\inetpub\wwwroot'
       state: Stopped
 
+  - name: New IIS Site
+    win_iis_website:
+      name: "New Web site"
+      path: 'C:\inetpub\wwwroot'
+      state: Started
+
   - name: test the things
     win_testmod: path=somethingelse
 
