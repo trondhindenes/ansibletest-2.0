@@ -23,6 +23,7 @@
       name: "New Web site"
       path: 'C:\inetpub\wwwroot'
       state: Started
+      application_pool: "DefaultAppPool"
 
   - name: test the things
     win_testmod: path=somethingelse
