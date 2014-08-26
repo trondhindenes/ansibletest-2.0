@@ -3,6 +3,10 @@
     debug:
       msg: "{{ ansible_hostname }} {{ ansible_interfaces[0].interface_name }}"
 
+  - name: test hostvars
+    debug:
+      msg: "10.10.50.4,8.8.8.8"
+
   - name: DNS Client server address
     win_dns_client:
       dns_server_Address: "10.10.50.4,8.8.8.8"
