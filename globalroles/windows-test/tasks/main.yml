@@ -1,7 +1,7 @@
 ---
   - name: test hostvars
     debug:
-      msg: "{{ ansible_hostname }} {{ ansible_interfaces[0].interface_name }}"
+      msg: "{{ ansible_hostname }} has nic {{ ansible_interfaces[0].interface_name }}"
 
   - name: test hostvars
     debug:
@@ -24,6 +24,8 @@
       path: 'C:\inetpub\wwwroot'
       state: Started
       application_pool: "DefaultAppPool"
+
+
 
   - name: test the things
     win_testmod: path=somethingelse
@@ -48,4 +50,17 @@
     win_hosts_file:
       host_name: "www.crayon.com"
       ip_address: "217.114.91.109"
-      ensure: absent
+      ensure: present
+
+  - name: get svn client - version 1.7
+    win_get_url:
+      url: 'http://sourceforge.net/projects/tortoisesvn/files/1.7.15/Application/TortoiseSVN-1.7.15.25753-x64-svn-1.7.18.msi/download'
+      dest: 'C:\tortoise-1.7.msi'
+
+  - name: ensure svn is version 1.7
+    win_msi:
+      path='C:\tortoise-1.7.msi'
+      creates='C:\Program Files\TortoiseSVN'
+      state=present
+      msiname='TortoiseSVN'
+      msiversionstring='1.7.15.25753'
