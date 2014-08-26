@@ -15,7 +15,7 @@
   - name: IIS Site
     win_iis_website:
       name: "Default Web site"
-      path: "C:\inetpub\wwwroot"
+      path: 'C:\inetpub\wwwroot'
       state: Stopped
 
   - name: test the things
