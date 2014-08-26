@@ -6,7 +6,7 @@
   - name: DNS Client server address
     win_dns_client:
       dns_server_Address: "10.10.50.4"
-      interface_name: "{{ ansible_interfaces[0].interface_name }}"
+      interface_index: "{{ ansible_interfaces[0].interface_index }}"
 
   - name: test the things
     win_testmod: path=somethingelse
