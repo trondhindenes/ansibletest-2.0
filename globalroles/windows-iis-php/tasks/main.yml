@@ -1,11 +1,12 @@
 ---
+# Enable the required win features
   - name: webserver
     win_feature:
       name="Web-Server,Web-Mgmt-Tools,web-Default-Doc,Web-Dir-Browsing,Web-Http-Errors,Web-Static-Content,Web-Http-Logging,web-Stat-Compression,web-Filtering,web-CGI,web-ISAPI-Ext,web-ISAPI-Filter"
       state=present
       restart=False
 
-# Download PHP thingy if it's not already on disk
+# Download and extract PHP thingy if it's not already on disk
   - name: Verify PHP thingy
     win_stat:
       path="C:\php.zip"
@@ -25,6 +26,7 @@
     action: script extractfile.ps1
     when: phpfolder.stat.exists == false
 
+# Download and install Visual C Redist2012
   - name: Install the vc thingy
     win_package:
       name="Microsoft Visual C thingy"
@@ -32,16 +34,22 @@
       ProductId="{CF2BEA3C-26EA-32F8-AA9B-331F7E34BA97}"
       Arguments="/install /passive /norestart"
 
-  - name: Configure PHP default doc
-    action: script configurephp.ps1
+# Make sure the MySql extention for PHP is in the main PHP path (ext\php_mysql.dll --> php_mysql.dll)
+  - name: Check if php sql file already exists
+    register: php_mysql_file
+    win_stat:
+      path=C:\php\php_mysql.dll
 
-  - name: Configure PHP for IIS
-    action: script configuredefaultdoc.ps1
 
-  - name: Verify PHP ini
-    action: win_stat path="C:\php\php.ini"
-    register: phpinifile
+  - name: Copy the php sql file to its correct location
+    when: php_mysql_file.stat.exists == false
+    copy:
+      src=C:\php\ext\php_mysql.dll
+      dest=C:\php\php_mysql.dll
 
-  - name: Copy PHP ini
-    action: script copyphpini.ps1
-    when: phpinifile.stat.exists == false
+# Make sure the php.ini is in the Php folder
+
+# Make sure the php cgi module is registered with IIS
+
+# Make sure the php binary folder is in the path
+
