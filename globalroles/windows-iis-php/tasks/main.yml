@@ -43,6 +43,11 @@
     script: copymysqldll.ps1
     when: phpmysqlfile.stat.exists == false
 
+# Make sure the php binary folder is in the path
+  - name: env path
+    win_environment:
+      path="something"
+
 # Make sure the php.ini is in the Php folder
   - name: php.ini
     template:
@@ -53,7 +58,3 @@
   - name: Ensure the php scriptmap exists
     script: configurephp.ps1
 
-# Make sure the php binary folder is in the path
-  - name: 'Make sure C:\php is in the env path'
-    win_environment:
-      path="C:\php"
