@@ -35,7 +35,7 @@
       Arguments="/install /passive /norestart"
 
 # Make sure the MySql extention for PHP is in the main PHP path (ext\php_mysql.dll --> php_mysql.dll)
-  - name: Copy the php_sql-dll file to its correct location
+  - name: Ensure the mysql extension is in its correct folder
     script: copymysqldll.ps1 creates=C:\php\php_mysql.dll
 
 # Make sure the php.ini is in the Php folder
