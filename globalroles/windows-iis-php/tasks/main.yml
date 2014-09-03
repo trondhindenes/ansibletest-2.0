@@ -2,7 +2,7 @@
 # Enable the required win features
   - name: webserver
     win_feature:
-      name="Web-Server,Web-Mgmt-Tools,web-Default-Doc,Web-Dir-Browsing,Web-Http-Errors,Web-Static-Content,Web-Http-Logging,web-Stat-Compression,web-Filtering,web-CGI,web-ISAPI-Ext,web-ISAPI-Filter"
+      name='Web-Server,Web-Mgmt-Tools,web-Default-Doc,Web-Dir-Browsing,Web-Http-Errors,Web-Static-Content,Web-Http-Logging,web-Stat-Compression,web-Filtering,web-CGI,web-ISAPI-Ext,web-ISAPI-Filter'
       state=present
       restart=False
 
@@ -36,9 +36,7 @@
 
 # Make sure the MySql extention for PHP is in the main PHP path (ext\php_mysql.dll --> php_mysql.dll)
   - name: Copy the php_sql-dll file to its correct location
-    script:
-      creates=C:\php\php_mysql.dll
-      free_form=copymysqldll.ps1
+    script: copymysqldll.ps1 creates=C:\php\php_mysql.dll
 
 # Make sure the php.ini is in the Php folder
   - name: php.ini
