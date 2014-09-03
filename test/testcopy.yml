@@ -1,0 +1,5 @@
+---
+- hosts: windows-web
+  tasks:
+  - name: Test copy
+    copy: src=C:\testfile1.txt dest=C:\testfile2.txt
