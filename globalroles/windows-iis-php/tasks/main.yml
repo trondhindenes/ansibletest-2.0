@@ -35,19 +35,16 @@
       Arguments="/install /passive /norestart"
 
 # Make sure the MySql extention for PHP is in the main PHP path (ext\php_mysql.dll --> php_mysql.dll)
-  - name: Check if php sql file already exists
-    register: php_mysql_file
-    win_stat:
-      path=C:\php\php_mysql.dll
-
-
-  - name: Copy the php sql file to its correct location
-    when: php_mysql_file.stat.exists == false
-    copy:
-      src=C:\php\ext\php_mysql.dll
-      dest=C:\php\php_mysql.dll
+  - name: Copy the php_sql-dll file to its correct location
+    script:
+      creates=C:\php\php_mysql.dll
+      free_form=copymysqldll.ps1
 
 # Make sure the php.ini is in the Php folder
+  - name: php.ini
+    template:
+      src=php.ini.j2
+      dest="{{ packagepath }}\php.ini"
 
 # Make sure the php cgi module is registered with IIS
 
