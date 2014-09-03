@@ -1,7 +1,7 @@
-if (!(get-webconfiguration -Filter "System.WebServer/handlers/*" | where {$_.Name -eq "PHP"}))
+if (!(get-webconfiguration -Filter "System.WebServer/handlers/*" | where {$_.Name -eq "phpFastCgi"}))
 {
     add-webconfiguration /system.webServer/handlers iis:\ -value @{
-        name = "PHP"
+        name = phpFastCgi
         path = "*.php"
         verb = "*"
         modules = "FastCgiModule"
