@@ -55,5 +55,5 @@
 
 # Make sure the php binary folder is in the path
   - name: 'Make sure C:\php is in the env path'
-    win_env:
+    win_environment:
       path="C:\php"
