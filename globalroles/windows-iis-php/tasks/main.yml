@@ -54,6 +54,6 @@
     script: configurephp.ps1
 
 # Make sure the php binary folder is in the path
-  - name: Make sure C:\php is in the env path
+  - name: 'Make sure C:\php is in the env path'
     win_env:
       path='C:\php'
