@@ -1,0 +1,5 @@
+---
+- hosts: all
+  tasks:
+    - name: Install webserver
+      win_feature: name="web-server"
