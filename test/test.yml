@@ -1,4 +1,4 @@
-- name: Windows PHP
-  hosts: windows-web
+- name: Windows Ping
+  hosts: all
   roles:
-  - windows-iis-php
+  - windows-ping
