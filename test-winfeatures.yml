@@ -3,3 +3,8 @@
   tasks:
     - name: Install webserver
       win_feature: name="web-server"
+
+- hosts: all
+  tasks:
+    - name: Install webserver
+      win_feature: name="Web-Asp-Net45"
