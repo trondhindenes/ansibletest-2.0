@@ -45,7 +45,7 @@
 
 # Make sure the php binary folder is in the path
   - name: env path
-    win_environment:
+    win_environment2:
       env_path="something"
 
 # Make sure the php.ini is in the Php folder
