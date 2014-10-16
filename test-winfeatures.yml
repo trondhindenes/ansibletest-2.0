@@ -6,5 +6,5 @@
 
 - hosts: all
   tasks:
-    - name: Install webserver
+    - name: Install Web-Asp-Net45
       win_feature: name="Web-Asp-Net45"
