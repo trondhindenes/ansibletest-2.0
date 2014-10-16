@@ -1,3 +1,3 @@
 ---
-  - name: win_ping
-      win_ping
+  - name: Windows Ping
+    action: win_ping
