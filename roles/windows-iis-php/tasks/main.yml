@@ -49,10 +49,10 @@
       env_path="something"
 
 # Make sure the php.ini is in the Php folder
-  - name: php.ini
-    template:
-      src=php.ini.j2
-      dest='C:\php\php.ini'
+#  - name: php.ini
+#    template:
+#      src=php.ini.j2
+#      dest='C:\php\php.ini'
 
 # Make sure the php cgi module is registered with IIS
   - name: Ensure the php scriptmap exists
