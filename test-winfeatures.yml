@@ -1,10 +1,5 @@
 ---
 - hosts: all
-  tasks:
-    - name: Install webserver
-      win_feature: name="web-server"
+  roles:
+  - windows-iis-php
 
-- hosts: all
-  tasks:
-    - name: Install Web-Asp-Net45
-      win_feature: name="Web-Asp-Net45"
